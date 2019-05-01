@@ -7,9 +7,7 @@
  */
 
 #include "point_cloud_io/Read.hpp"
-
-//PCL
-#include <pcl/point_cloud.h>
+//PCL #include <pcl/point_cloud.h>
 #include <pcl/point_types.h>
 #include <pcl/io/ply_io.h>
 #include <pcl_conversions/pcl_conversions.h>
@@ -105,6 +103,14 @@ bool Read::readFile(const std::string& filePath, const std::string& pointCloudFr
 
     // Define PointCloud2 message.
     moveFromPCL(polygonMesh.cloud, *pointCloudMessage_);
+  }
+  else if (filePath.find(".pcd") != std::string::npos) {
+    // Load .pcd file.
+    PointCloud<PointXYZ> pointCloud;
+    if (loadPCDFile(filePath, pointCloud) != 0) return false;
+
+    // Define PointCloud2 message.
+    toROSMsg(pointCloud, *pointCloudMessage_);
   }
   else {
     ROS_ERROR_STREAM("Data format not supported.");
