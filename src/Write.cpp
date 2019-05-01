@@ -105,8 +105,8 @@ std::cout << folderPath_ << std::endl;
     if (writer.write(filePath.str(), pclCloud, binary, use_camera) != 0) {
       ROS_ERROR("Something went wrong when trying to write the point cloud file.");
       return;
-*/
     }
+*/
   }
   else if(fileEnding_ == "pcd"){
     //Write pcd file
