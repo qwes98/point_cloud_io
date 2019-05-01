@@ -2,6 +2,7 @@ Point Cloud IO
 ======================
 
 Original Ver: `pcl::PointXYZRGB` (from RGB-D Camera)
+
 Modified Ver: `pcl::PointXYZ` (from 3D Lidar)
 
 ---------------
