@@ -93,8 +93,10 @@ std::cout << folderPath_ << std::endl;
   filePath << fileEnding_;
 
   if (fileEnding_ == "ply") {
+	ROS_ERROR("ply format is not supported");
+/*
     // Write .ply file.
-    PointCloud<PointXYZRGBNormal> pclCloud;
+    PointCloud<PointXYZ> pclCloud;
     fromROSMsg(*cloud, pclCloud);
 
     PLYWriter writer;
@@ -103,13 +105,14 @@ std::cout << folderPath_ << std::endl;
     if (writer.write(filePath.str(), pclCloud, binary, use_camera) != 0) {
       ROS_ERROR("Something went wrong when trying to write the point cloud file.");
       return;
+*/
     }
   }
   else if(fileEnding_ == "pcd"){
     //Write pcd file
-    PointCloud<PointXYZRGBNormal> pclCloud;
+    PointCloud<PointXYZ> pclCloud;
     fromROSMsg(*cloud, pclCloud);
-    savePCDFile (filePath.str(), pclCloud);
+    savePCDFile(filePath.str(), pclCloud);
   }
   else {
     ROS_ERROR_STREAM("Data format not supported.");
